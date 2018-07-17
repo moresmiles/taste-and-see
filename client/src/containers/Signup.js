@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { signup } from '../actions/userActions';
 
 class Signup extends React.Component {
     constructor(props){
@@ -19,6 +21,12 @@ class Signup extends React.Component {
 
     handleOnSignup = (e) => {
         e.preventDefault();
+        const { signup, history } = this.props;
+          if (signup(this.state)) {
+            history.push('/account')
+        } else {
+            window.alert("Sorry, something went wrong. Please try signing up again.")
+        }
     }
 
     render() {
@@ -55,4 +63,4 @@ class Signup extends React.Component {
         );
     }
 }
-export default Signup;
+export default connect(null, {signup})(Signup);
