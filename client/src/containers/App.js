@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux'
+import '../App.css';
 import Welcome from '../components/Welcome';
+import Signup from './Signup';
+import Navigation from './Navigation'
+import Login from './Login'
 
 class App extends Component {
   render() {
@@ -29,6 +35,11 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <Navigation isAuthenticated={isAuthenticated} />
+          <div>
+            {isAuthenticated ? loggedIn : loggedOut}
+          <br />
+          </div>
         </div>
       </Router>
     );
