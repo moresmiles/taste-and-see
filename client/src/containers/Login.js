@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { authenticate } from '../actions/userActions';
 
 class Login extends React.Component {
     constructor(props){
@@ -19,6 +21,12 @@ class Login extends React.Component {
 
     handleOnLogin = (e) => {
         e.preventDefault();
+        const { authenticate, history } = this.props;
+          if (authenticate(this.state)) {
+              history.push('/account')
+        } else {
+            window.alert("Sorry, something went wrong. Please try logging in again.")
+        }
     }
 
     render() {
@@ -57,3 +65,4 @@ class Login extends React.Component {
     }
 }
 export default Login
+export default connect(null, {authenticate})(Login);
