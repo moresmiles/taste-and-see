@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux'
 import '../App.css';
 import Welcome from '../components/Welcome';
+import UserShow from '../components/UserShow';
 import Signup from './Signup';
 import Navigation from './Navigation'
 import Login from './Login'
@@ -30,6 +31,7 @@ class App extends Component {
     )
     const loggedIn = (
       <div>
+        <Route path="/account" render={() => <UserShow user={user} />} />
       </div>
     )
     return (
