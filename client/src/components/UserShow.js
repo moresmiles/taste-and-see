@@ -7,7 +7,7 @@ const UserShow = ({user}) => {
         <h2>You are logged in YAY!</h2>
         <p>ID: {user.id} </p>
         <p>email: {user.email} </p>
-        <p><Link to="/newbeer">New Beer</Link> </p>
+        <p><Link to="/new-beer">New Beer</Link> </p>
         <p><Link to="/beer" >Saved Beers</Link></p>
       </div>
     );

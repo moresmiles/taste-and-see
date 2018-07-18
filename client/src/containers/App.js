@@ -25,7 +25,7 @@ class App extends Component {
     const loggedIn = (
       <div>
         <Route path="/account" render={() => <UserShow user={user} />} />
-        <Route path="/newbeer" component={BeerForm} />
+        <Route path="/new-beer" component={BeerForm} />
         <Route path="/beers" component={BeersList} />
       </div>
     )
