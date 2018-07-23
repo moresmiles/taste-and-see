@@ -1,15 +1,19 @@
 import React, {Component} from 'react';
 import { Link, withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 import { logout } from '../actions/userActions';
 
 class Navigation extends Component {
 
   handleLogout = (e) => {
-      e.preventDefault();
-        this.props.logout();
-        this.props.history.push('/')
+    e.preventDefault();
+    this.props.logout();
+    this.props.history.push('/')
+  }
+
+  handleOnClick = (arg) => {
+    this.props.history.push(`/${arg}`)
   }
 
   render () {
@@ -19,17 +23,24 @@ class Navigation extends Component {
       <div>
         <Layout>
           <Header style={{width: '100%' }}>
-              <Menu
-                theme="dark"
-                mode="horizontal"
-                style={{ lineHeight: '64px' }}
-                >
-              <li className="ant-menu-item">
-                <button onClick={(e) => this.handleLogout(e)}>Log Out</button>
-              </li>
-              </Menu>
-            </Header>
-          </Layout>
+            <Menu
+              theme="dark"
+              mode="horizontal"
+              style={{ lineHeight: '64px' }}
+              >
+              <Menu.Item className="ant-menu-item"
+                 onClick={(e) => this.handleLogout(e)}
+                 >
+                Log Out
+              </Menu.Item>
+              <Menu.Item className="ant-menu-item"
+                 onClick={() => this.handleOnClick("account")}
+                 >
+                Your Account
+              </Menu.Item>
+            </Menu>
+          </Header>
+        </Layout>
       </div>
     );
 
@@ -37,28 +48,30 @@ class Navigation extends Component {
       <div>
         <Layout>
           <Header style={{width: '100%' }}>
-              <Menu
-                theme="dark"
-                mode="horizontal"
-                style={{ lineHeight: '64px' }}
+            <Menu
+              theme="dark"
+              mode="horizontal"
+              style={{ lineHeight: '64px' }}
+            >
+              <Menu.Item className="ant-menu-item"
+                onClick={() => this.handleOnClick("")}
                 >
-                <li className="ant-menu-item">
-                  <a href="/">Home</a>
-                </li>
-                <li className="ant-menu-item">
-                  <a href="/login">Login</a>
-                </li>
-                <li className="ant-menu-item">
-                  <a href="/signup">Signup</a>
-                </li>
-              </Menu>
-            </Header>
-            <Content>
-
-            </Content>
-          </Layout>
+                Home
+              </Menu.Item>
+              <Menu.Item className="ant-menu-item"
+                onClick={() => this.handleOnClick("login")}
+                >
+                Login
+              </Menu.Item>
+              <Menu.Item className="ant-menu-item"
+                onClick={() => this.handleOnClick("signup")}
+                >
+                Signup
+              </Menu.Item>
+            </Menu>
+          </Header>
+        </Layout>
       </div>
-
   )
 
   return (
