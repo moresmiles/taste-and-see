@@ -33,3 +33,23 @@ export function createBeer(beerDetails) {
             })
     }
 }
+export function deleteBeer(beerId) {
+    return dispatch => {
+        return fetch(`${API_URL}/beers/${beerId}`, {
+            method: 'DELETE',
+            headers: {
+                "Accept":"application/json",
+                "Content-Type":"application/json"
+            }
+        })
+            .then(() => {
+                dispatch({
+                    type: 'DELETE_BEER',
+                    payload: beerId
+                })
+            })
+            .catch((errors) => {
+                console.log(errors)
+            })
+    }
+}
