@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   def find
        @user = User.find_by(email: params[:user][:email])
        if @user
-         render json:@user
+         render json: @user
        else
          @errors = @user.errors.full_messages
          render json:@errors
@@ -58,6 +58,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.fetch(:user, {})
+      params.require(:user).permit(:password, :email)
     end
 end
