@@ -6,6 +6,9 @@ export default ( state={ loading: false, beers: [] }, action ) => {
       return {...state, beers: action.payload, loading: false}
     case 'CREATE_BEER':
       return {...state, beers: state.beers.concat(action.payload)}
+    case 'DELETE_BEER':
+      const newBeerState = state.beers.filter(beer => beer.id !== parseInt(action.payload, 10))
+      return {...state, beers: newBeerState}
     default:
       return state
     }
