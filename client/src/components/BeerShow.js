@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const BeerShow = ({match, beers, handleDeleteBeer}) => {
+const BeerShow = ({match, beers, handleDeleteBeer, handleEditBeer}) => {
   const beer = beers.find(beer => beer.id === parseInt(match.params.beerId, 10));
 
   const beerInfo =
