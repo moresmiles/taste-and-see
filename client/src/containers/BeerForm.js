@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createBeer } from '../actions/beerActions';
+import { withRouter } from "react-router-dom";
+import { createBeer, updateBeer } from '../actions/beerActions';
 
 class BeerForm extends Component {
   constructor(props){
@@ -17,11 +18,12 @@ class BeerForm extends Component {
 } else {
   const beer = this.props.beers.find(beer => beer.id === parseInt(this.props.match.params.beerId, 10));
     this.state = {
+      id: beer.id,
       name: beer.name,
       style: beer.style,
       rating: beer.rating,
       notes: beer.notes,
-      user_id: beer.user.id
+      user_id: this.props.user_id
     }
   }
 }
@@ -35,8 +37,14 @@ class BeerForm extends Component {
 
   handleOnSubmitBeer = (e) => {
     e.preventDefault();
-    this.props.createBeer(this.state)
-    this.props.history.push('/beers');
+    if (this.props.option === "create") {
+      this.props.createBeer(this.state)
+      this.props.history.push('/beers');
+  } else if (this.props.option === "update") {
+      this.props.updateBeer(this.state);
+      const beerId = e.target.dataset.id;
+      this.props.history.push('/beers/');
+    }
   }
 
   render() {
@@ -44,7 +52,7 @@ class BeerForm extends Component {
       <div>
         <h2>New Beer</h2>
 
-          <form onSubmit={this.handleOnSubmitBeer} >
+          <form onSubmit={this.handleOnSubmitBeer} data-id={this.props.match.params.beerId}>
             <label htmlFor="name">Beer Name </label>
               <br />
               <input
@@ -87,7 +95,7 @@ class BeerForm extends Component {
             <br /><br />
                 <input
                   type="submit"
-                  value="Add Beer"
+                  value={this.props.option === "create" ? "Add Beer" : "Update Beer"}
                 />
             </form>
           </div>
@@ -100,4 +108,4 @@ const mapStateToProps = (state) => {
         user_id: state.user.currentUser.id
     }
 }
-export default connect(mapStateToProps, {createBeer})(BeerForm);
+export default BeerForm = withRouter(connect(mapStateToProps, {createBeer, updateBeer})(BeerForm));
