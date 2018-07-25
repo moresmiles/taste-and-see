@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
 import { Layout, Menu } from 'antd';
 import { logout } from '../actions/userActions';
 
 class Navigation extends Component {
 
-  handleLogout = (e) => {
-    e.preventDefault();
+  handleLogout = () => {
+    //e.preventDefault();
     this.props.logout();
     this.props.history.push('/')
   }
@@ -17,7 +17,7 @@ class Navigation extends Component {
   }
 
   render () {
-    const { Header, Content, Footer } = Layout;
+    const { Header } = Layout;
 
     const loggedInNav = (
       <div>
@@ -29,7 +29,7 @@ class Navigation extends Component {
               style={{ lineHeight: '64px' }}
               >
               <Menu.Item className="ant-menu-item"
-                 onClick={(e) => this.handleLogout(e)}
+                 onClick={() => this.handleLogout()}
                  >
                 Log Out
               </Menu.Item>
