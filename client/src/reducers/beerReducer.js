@@ -9,6 +9,9 @@ export default ( state={ loading: false, beers: [] }, action ) => {
     case 'DELETE_BEER':
       const newBeerState = state.beers.filter(beer => beer.id !== parseInt(action.payload, 10))
       return {...state, beers: newBeerState}
+    case 'UPDATE_BEER':
+      const beer = action.payload
+      const index = state.beers.findIndex(beer => beer.id === beer.id);
     default:
       return state
     }
