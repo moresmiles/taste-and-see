@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createBeer } from '../actions/beerActions';
 
-class BeerForm extends React.Component {
+class BeerForm extends Component {
   constructor(props){
     super(props);
 
+  if (this.props.option === "create") {
     this.state = {
       name: '',
       style: '',
@@ -13,7 +14,17 @@ class BeerForm extends React.Component {
       notes: '',
       user_id: this.props.user_id
     }
+} else {
+  const beer = this.props.beers.find(beer => beer.id === parseInt(this.props.match.params.beerId, 10));
+    this.state = {
+      name: beer.name,
+      style: beer.style,
+      rating: beer.rating,
+      notes: beer.notes,
+      user_id: beer.user.id
+    }
   }
+}
 
   handleOnChange = (e) => {
     const {name, value} = e.target;
