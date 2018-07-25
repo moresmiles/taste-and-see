@@ -11,6 +11,8 @@ const BeerShow = ({match, beers, handleDeleteBeer}) => {
       <p>Rating: {beer.rating}</p>
       <p>Notes: {beer.notes}</p>
       <button data-id={beer.id} onClick={(e) => handleDeleteBeer(e)}>Delete</button>
+      <button data-id={beer.id} onClick={(e) => handleEditBeer(e)}>Edit</button>
+
     </div>
 
   return (
