@@ -63,7 +63,7 @@ class BeerForm extends Component {
                 onChange={this.handleOnChange}
               />
               <br /><br />
-            <label htmlFor="pieces">Beet Style </label>
+            <label htmlFor="pieces">Beer Style </label>
               <br />
               <input
                 name="style"
