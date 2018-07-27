@@ -7,7 +7,6 @@ import { logout } from '../actions/userActions';
 class Navigation extends Component {
 
   handleLogout = () => {
-    //e.preventDefault();
     this.props.logout();
     this.props.history.push('/')
   }
@@ -29,14 +28,24 @@ class Navigation extends Component {
               style={{ lineHeight: '64px' }}
               >
               <Menu.Item className="ant-menu-item"
-                 onClick={() => this.handleLogout()}
-                 >
-                Log Out
+                onClick={() => this.handleOnClick("beers/new")}
+                >
+                New Beer
+              </Menu.Item>
+              <Menu.Item className="ant-menu-item"
+                onClick={() => this.handleOnClick("beers")}
+                >
+                Saved Beers
               </Menu.Item>
               <Menu.Item className="ant-menu-item"
                  onClick={() => this.handleOnClick("account")}
                  >
                 Your Account
+              </Menu.Item>
+              <Menu.Item className="ant-menu-item"
+                 onClick={() => this.handleLogout()}
+                 >
+                Log Out
               </Menu.Item>
             </Menu>
           </Header>
