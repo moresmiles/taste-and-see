@@ -43,17 +43,16 @@ class BeerForm extends Component {
   } else if (this.props.option === "update") {
       this.props.updateBeer(this.state);
       const beerId = e.target.dataset.id;
-      this.props.history.push('/beers/');
+      this.props.history.push(`/beers/${beerId}`);
     }
   }
 
   render() {
     return (
-      <div>
-        <h2>New Beer</h2>
-
+      <div id="login">
+        <h1>New Beer</h1>
           <form onSubmit={this.handleOnSubmitBeer} data-id={this.props.match.params.beerId}>
-            <label htmlFor="name">Beer Name </label>
+            <label>Beer Name </label>
               <br />
               <input
                 name="name"
@@ -63,7 +62,7 @@ class BeerForm extends Component {
                 onChange={this.handleOnChange}
               />
               <br /><br />
-            <label htmlFor="pieces">Beer Style </label>
+            <label>Beer Style </label>
               <br />
               <input
                 name="style"
@@ -73,7 +72,7 @@ class BeerForm extends Component {
                 onChange={this.handleOnChange}
               />
               <br /><br />
-            <label htmlFor="missing_pieces">Rating 1-5</label>
+            <label >Rating 1-5</label>
               <br />
               <input
                 name="rating"
@@ -83,7 +82,7 @@ class BeerForm extends Component {
                 onChange={this.handleOnChange}
               />
               <br /><br />
-            <label htmlFor="missing_pieces">Notes</label>
+            <label>Notes</label>
               <br />
               <input
                 name="notes"
