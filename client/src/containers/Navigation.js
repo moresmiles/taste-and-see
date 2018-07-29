@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import { logout } from '../actions/userActions';
 
 class Navigation extends Component {
@@ -21,21 +21,20 @@ class Navigation extends Component {
     const loggedInNav = (
       <div>
         <Layout>
-          <Header style={{width: '100%' }}>
             <Menu
               theme="dark"
               mode="horizontal"
               style={{ lineHeight: '64px' }}
               >
               <Menu.Item className="ant-menu-item"
-                onClick={() => this.handleOnClick("beers/new")}
-                >
-                New Beer
-              </Menu.Item>
-              <Menu.Item className="ant-menu-item"
                 onClick={() => this.handleOnClick("beers")}
                 >
                 Saved Beers
+              </Menu.Item>
+              <Menu.Item className="ant-menu-item"
+                onClick={() => this.handleOnClick("beers/new")}
+                >
+                New Beer
               </Menu.Item>
               <Menu.Item className="ant-menu-item"
                  onClick={() => this.handleOnClick("account")}
@@ -48,7 +47,6 @@ class Navigation extends Component {
                 Log Out
               </Menu.Item>
             </Menu>
-          </Header>
         </Layout>
       </div>
     );
@@ -56,7 +54,6 @@ class Navigation extends Component {
     const welcomeNav = (
       <div>
         <Layout>
-          <Header style={{width: '100%' }}>
             <Menu
               theme="dark"
               mode="horizontal"
@@ -78,7 +75,6 @@ class Navigation extends Component {
                 Signup
               </Menu.Item>
             </Menu>
-          </Header>
         </Layout>
       </div>
   )
