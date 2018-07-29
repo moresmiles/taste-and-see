@@ -8,6 +8,7 @@ import Signup from './Signup';
 import Navigation from './Navigation'
 import BeersContainer from './BeersContainer';
 import Login from './Login'
+import Footer from '../components/Footer'
 
 class App extends Component {
   render() {
@@ -33,6 +34,7 @@ class App extends Component {
             {isAuthenticated ? loggedIn : loggedOut}
           <br />
           </div>
+          <Footer />
         </div>
       </Router>
     );
