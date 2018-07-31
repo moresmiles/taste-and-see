@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../actions/userActions';
+import { Alert } from 'antd';
 
 class Signup extends React.Component {
   constructor(props){
@@ -37,7 +38,7 @@ class Signup extends React.Component {
       }
   }
 
-  validate = (name, email, password) => {
+  validate = (email, password) => {
   const errors = [];
     if (this.state.email.length < 5) {
       errors.push("Email should be at least 5 charcters long");
@@ -59,9 +60,15 @@ class Signup extends React.Component {
       <div id="login">
         <h2>Sign Up</h2>
           <form onSubmit={this.handleOnSignup}>
-            {this.state.errors.map(error => (
-              <p id="errors" key={error}>Error: {error}</p>
-            ))}
+            <div>
+              {this.state.errors.map(error =>
+              <Alert
+                message={error}
+                type="error"
+                closable
+             />
+              )}
+            </div>
             <label htmlFor="email">Email: </label>
               <br />
             <input

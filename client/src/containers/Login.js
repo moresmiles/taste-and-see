@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../actions/userActions';
+import { Alert } from 'antd';
 
 class Login extends React.Component {
   constructor(props){
@@ -36,6 +37,7 @@ class Login extends React.Component {
         window.alert("Sorry, something went wrong. Please try logging in again.")
     }
   }
+
   validate = (name, email, password) => {
   const errors = [];
     if (this.state.email.length < 5) {
@@ -58,9 +60,16 @@ class Login extends React.Component {
       <div id="login">
         <h2>Log In</h2>
           <form onSubmit={this.handleOnLogin}>
-            {this.state.errors.map(error => (
-              <p id="errors" key={error}>Error: {error}</p>
-            ))}
+            <div>
+              {this.state.errors.map(error =>
+              <Alert
+                message={error}
+                type="error"
+                closable
+                key={error}
+             />
+              )}
+            </div>
             <label htmlFor="email">Email: </label>
               <br />
           <input
