@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { createBeer, updateBeer } from '../actions/beerActions';
+import { Alert } from 'antd';
 
 class BeerForm extends Component {
   constructor(props){
@@ -13,7 +14,8 @@ class BeerForm extends Component {
       style: '',
       rating: 0,
       notes: '',
-      user_id: this.props.user_id
+      user_id: this.props.user_id,
+      errors: []
     }
 } else {
   const beer = this.props.beers.find(beer => beer.id === parseInt(this.props.match.params.beerId, 10));
@@ -23,7 +25,8 @@ class BeerForm extends Component {
       style: beer.style,
       rating: beer.rating,
       notes: beer.notes,
-      user_id: this.props.user_id
+      user_id: this.props.user_id,
+      errors: []
     }
   }
 }
@@ -37,6 +40,13 @@ class BeerForm extends Component {
 
   handleOnSubmitBeer = (e) => {
     e.preventDefault();
+    const { name, style, rating } = this.state;
+
+    const errors = this.validate(name, style, rating);
+      if (errors.length > 0) {
+        this.setState({ errors });
+        return;
+      }
     if (this.props.option === "create") {
       this.props.createBeer(this.state)
       this.props.history.push('/beers');
@@ -47,11 +57,32 @@ class BeerForm extends Component {
     }
   }
 
+  validate = (name, style, rating) => {
+  const errors = [];
+    if (this.state.name.length === '') {
+      errors.push("Beer must have a name");
+    }
+    if (this.state.style === '') {
+      errors.push("Beer must have a style");
+    }
+  return errors;
+}
+
   render() {
     return (
       <div id="login">
         <h1>New Beer</h1>
           <form onSubmit={this.handleOnSubmitBeer} data-id={this.props.match.params.beerId}>
+            <div>
+              {this.state.errors.map(error =>
+              <Alert
+                message={error}
+                type="error"
+                closable
+                key={error}
+             />
+              )}
+            </div>
             <label>Beer Name </label>
               <br />
               <input
