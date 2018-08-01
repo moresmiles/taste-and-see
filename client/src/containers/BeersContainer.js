@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchBeers, deleteBeer } from '../actions/beerActions';
 import BeerShow from '../components/BeerShow'
@@ -19,7 +19,6 @@ class BeersContainer extends Component {
     this.props.fetchBeers();
   }
 
-
   componentDidUpdate(prevProps, prevState) {
     if (this.props.beerState.beers !== prevProps.beerState.beers) {
       this.setState({
@@ -36,6 +35,7 @@ class BeersContainer extends Component {
 
   handleDeleteBeer = (e) => {
     e.preventDefault();
+    window.confirm("Are you sure you want to delete this beer?")
     const beerId = e.target.dataset.id
     this.props.deleteBeer(beerId);
     this.props.history.push('/beers');
@@ -90,4 +90,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default BeersContainer = connect(mapStateToProps, {fetchBeers, deleteBeer})(BeersContainer);
+export default connect(mapStateToProps, {fetchBeers, deleteBeer})(BeersContainer);
