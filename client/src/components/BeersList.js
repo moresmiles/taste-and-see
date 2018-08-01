@@ -1,27 +1,26 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { Card, Col, Row } from 'antd';
+import { Row, Col, Card } from 'antd';
 
 const BeersList = ({match, beers}) => {
   const savedBeers = (
-  <div style={{ background: '#ECECEC', padding: '30px' }}>
-    {beers.map(beer =>
-      <Row gutter={16}>
-        <Col span={8}>
-          <Card title={beer.name} extra={<Link key={beer.id} to={`/beers/${beer.id}`}>More Info</Link>} bordered={true}>
-            <p>{beer.style}</p>
-            <p>{beer.rating}</p>
+  <div className="beersList" >
+      <Row style={{padding:'30px'}}>
+        {beers.map(beer =>
+        <Col style={{padding:'30px'}} span={8}>
+          <Card key={beer.id} title={beer.name} extra={<Link to={`/beers/${beer.id}`}>More Info</Link>}>
+            <p>Style: {beer.style}</p>
+            <p> Rating: {beer.rating}</p>
           </Card>
         </Col>
+        )}
       </Row>
-    )}
   </div>
 )
 const noBeers = (
   <div>
-    <h1> You have no saved Beers </h1>
-    <h2><Link to="/beers/new">New Beer</Link> </h2>
-
+    <p> You have no saved Beers </p>
+    <p><Link to="/beers/new">New Beer</Link> </p>
   </div>
 )
 return (
