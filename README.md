@@ -1,24 +1,34 @@
-# README
+# Taste and See
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Have you ever tried a delicious beer and wanted to remember it's details for later? Look no further.
 
-Things you may want to cover:
+Taste and See:
 
-* Ruby version
+* Lets you add new beers to your personal beer database
 
-* System dependencies
+* Classify your beers by name, beer style, and rating
 
-* Configuration
+* Update a beer in case your feelings about it change upon further review
 
-* Database creation
+* Delete a beer if you are no longer interested in keeping it in your database
 
-* Database initialization
+## Usage
 
-* How to run the test suite
+To Install locally:
 
-* Services (job queues, cache servers, search engines, etc.)
+* fork https://github.com/moresmiles/taste-and-see.git & clone locally
+* cd taste-and-see
+* bundle install
+* rake db:migrate
+* rails s -p 3001
+* cd client
+* npm start
+* Open localhost:3000 in your browser and stay thirsty!
 
-* Deployment instructions
+## Contributing
 
-* ...
+Bug reports and pull requests are welcome on GitHub at https://github.com/moresmiles/taste-and-see.
+
+## License
+
+Taste and See is licensed under the MIT license. (http://opensource.org/licenses/MIT)
