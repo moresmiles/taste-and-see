@@ -1,18 +1,17 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Button } from 'antd';
 
 const BeerShow = ({match, beers, handleDeleteBeer, handleEditBeer}) => {
   const beer = beers.find(beer => beer.id === parseInt(match.params.beerId, 10));
 
   const beerInfo =
-    <div>
-      <h2>{beer.name}</h2>
+    <div className="beerShow">
+      <p>{beer.name}</p>
       <p>Style: {beer.style}</p>
       <p>Rating: {beer.rating}</p>
       <p>Notes: {beer.notes}</p>
-      <button data-id={beer.id} onClick={(e) => handleDeleteBeer(e)}>Delete</button>
-      <button data-id={beer.id} onClick={(e) => handleEditBeer(e)}>Edit</button>
-
+      <Button type="primary" data-id={beer.id} onClick={(e) => handleDeleteBeer(e)}>Delete</Button>
+      <Button type="primary" data-id={beer.id} onClick={(e) => handleEditBeer(e)}>Edit</Button>
     </div>
 
   return (
