@@ -41,17 +41,11 @@ class Login extends React.Component {
 
   validate = (email, password) => {
   const errors = [];
-    if (this.state.email.length < 5) {
-      errors.push("Email should be at least 5 charcters long");
-    }
-    if (this.state.email.split('').filter(x => x === '@').length !== 1) {
-      errors.push("Email should contain a @");
-    }
-    if (this.state.email.indexOf('.') === -1) {
-      errors.push("Email should contain at least one dot");
+    if (this.state.email === '') {
+      errors.push("Email can not be blank");
     }
     if (this.state.password.length < 6) {
-      errors.push("Password should be at least 6 characters long");
+      errors.push("Password must be at least 6 characters long");
     }
   return errors;
 }
