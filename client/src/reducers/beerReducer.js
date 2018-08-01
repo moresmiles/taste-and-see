@@ -11,7 +11,10 @@ export default ( state={ loading: false, beers: [] }, action ) => {
       return {...state, beers: newBeerState}
     case 'UPDATE_BEER':
       const beer = action.payload
-      const index = state.beers.findIndex(beer => beer.id === beer.id);
+      return {
+        ...state,
+          beers: state.beers.map(b => b.id === beer.id ? beer : b)
+        }
     default:
       return state
     }
