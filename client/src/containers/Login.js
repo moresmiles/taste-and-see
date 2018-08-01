@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../actions/userActions';
-import { Alert } from 'antd';
+import { Button, Alert } from 'antd';
 
 class Login extends React.Component {
   constructor(props){
@@ -34,11 +34,12 @@ class Login extends React.Component {
       if (authenticate(this.state)) {
         history.push('/beers')
       } else {
+        history.push('/')
         window.alert("Sorry, something went wrong. Please try logging in again.")
     }
   }
 
-  validate = (name, email, password) => {
+  validate = (email, password) => {
   const errors = [];
     if (this.state.email.length < 5) {
       errors.push("Email should be at least 5 charcters long");
@@ -57,8 +58,8 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div id="login">
-        <h2>Log In</h2>
+      <div className="login">
+        <p>Log In</p>
           <form onSubmit={this.handleOnLogin}>
             <div>
               {this.state.errors.map(error =>
@@ -90,10 +91,13 @@ class Login extends React.Component {
             onChange={this.handleOnChange}
           />
           <br /><br />
-          <input
-            type="submit"
-            value="Log In"
-          />
+          <Button
+            type="primary"
+            size="large"
+            htmlType="submit"
+            >
+            Log in
+          </Button>
         </form>
       </div>
     );

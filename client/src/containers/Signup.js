@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../actions/userActions';
-import { Alert } from 'antd';
+import { Button, Alert } from 'antd';
 
 class Signup extends React.Component {
   constructor(props){
@@ -57,8 +57,8 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div id="login">
-        <h2>Sign Up</h2>
+      <div className="login">
+        <p>Sign Up</p>
           <form onSubmit={this.handleOnSignup}>
             <div>
               {this.state.errors.map(error =>
@@ -89,10 +89,13 @@ class Signup extends React.Component {
             onChange={this.handleOnChange}
           />
           <br /><br />
-        <input
-            type="submit"
-            value="Create Account"
-          />
+          <Button
+            type="primary"
+            size="large"
+            htmlType="submit"
+            >
+            Create Account
+          </Button>
         </form>
       </div>
       );
