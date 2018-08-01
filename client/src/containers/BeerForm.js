@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { createBeer, updateBeer } from '../actions/beerActions';
-import { Alert } from 'antd';
+import { Button, Alert } from 'antd';
 
 class BeerForm extends Component {
   constructor(props){
@@ -59,7 +59,7 @@ class BeerForm extends Component {
 
   validate = (name, style, rating) => {
   const errors = [];
-    if (this.state.name.length === '') {
+    if (this.state.name === '') {
       errors.push("Beer must have a name");
     }
     if (this.state.style === '') {
@@ -70,7 +70,7 @@ class BeerForm extends Component {
 
   render() {
     return (
-      <div id="login">
+      <div className="beerForm">
         <h1>New Beer</h1>
           <form onSubmit={this.handleOnSubmitBeer} data-id={this.props.match.params.beerId}>
             <div>
@@ -98,7 +98,7 @@ class BeerForm extends Component {
               <input
                 name="style"
                 id="style"
-                type="test"
+                type="text"
                 value={this.state.style}
                 onChange={this.handleOnChange}
               />
@@ -109,6 +109,8 @@ class BeerForm extends Component {
                 name="rating"
                 id="rating"
                 type="number"
+                min="1"
+                max="5"
                 value={this.state.rating}
                 onChange={this.handleOnChange}
               />
@@ -123,10 +125,13 @@ class BeerForm extends Component {
                 onChange={this.handleOnChange}
               />
             <br /><br />
-                <input
-                  type="submit"
-                  value={this.props.option === "create" ? "Add Beer" : "Update Beer"}
-                />
+            <Button
+              type="primary"
+              size="large"
+              htmlType="submit"
+              >
+              {this.props.option === "create" ? "Add Beer" : "Update Beer"}
+            </Button>
             </form>
           </div>
         );
