@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu } from 'antd';
 import { logout } from '../actions/userActions';
 
 class Navigation extends Component {
@@ -16,8 +16,6 @@ class Navigation extends Component {
   }
 
   render () {
-    const { Header } = Layout;
-
     const loggedInNav = (
       <div>
         <Layout>
