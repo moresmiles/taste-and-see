@@ -14,16 +14,22 @@ Taste and See:
 
 ## Usage
 
+This app requires:
+  Rails version             5.1.6
+  Ruby version              2.3.1
+  RubyGems version          2.6.12
+  Rack version              2.0.5
+
 To Install locally:
 
-* fork https://github.com/moresmiles/taste-and-see.git & clone locally
-* cd taste-and-see
-* bundle install
-* rake db:migrate
-* rails s -p 3001
-* cd client
-* npm start
-* Open localhost:3000 in your browser and stay thirsty!
+* fork `https://github.com/moresmiles/taste-and-see.git` & clone locally
+* `cd taste-and-see`
+* `bundle install`
+* `rake db:migrate`
+* Open the rails server `rails s -p 3001`
+* `cd client`
+* `npm start`
+* localhost:3000 should automatically open in your browser, if not open `http://localhost:3000/` and stay thirsty!
 
 ## Contributing
 
